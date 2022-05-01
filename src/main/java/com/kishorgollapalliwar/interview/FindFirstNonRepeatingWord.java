@@ -11,13 +11,13 @@ import java.util.Objects;
  */
 public class FindFirstNonRepeatingWord {
     public static void main(String[] args) {
-        String input = "JAVA is not javaSCRIPT. But syntax of javascript is very close JAVA.";
+        String input = "JAVA is not javaSCRIPT. But syntax of javascript is very close java. Not all programming languages are as good as Java.";
         String temp = input.replace(".", "");
         String [] inputArray = temp.split(" ");
         boolean isCaseSensitiveCheck = false;
 
         String firstNonRepeatingWord = findFirstNonRepeatingWord(inputArray, isCaseSensitiveCheck);
-        System.out.println("First Non Repeating word is " + firstNonRepeatingWord);
+        System.out.println("First Non Repeating = " + firstNonRepeatingWord);
     }
 
     /**
@@ -26,25 +26,27 @@ public class FindFirstNonRepeatingWord {
      * @param strArray
      * @return first non repeating word if present, {@code null} otherwise.
      */
-    public static String findFirstNonRepeatingWord(String [] strArray, boolean isCaseSensitiveCheck) {//FIXME isCaseSensitiveCheck never used
+    public static String findFirstNonRepeatingWord(String [] strArray, boolean isCaseSensitiveCheck) {
         String nonRepeatingStr = null;
         Map<String, Integer> map = new HashMap<>();
 
         //preparation
         for(String currentStr : strArray) {
-            Integer count = map.get(currentStr);
+            String temp = currentStr.toLowerCase();
+            Integer count = map.get(temp);
 
             if (Objects.isNull(count)) {
                 count = 0;
             }
             count++;
 
-            map.put(currentStr, count);
+            map.put(temp, count);
         }
 
         //find
         for(String currentStr : strArray) {
-            Integer count = map.get(currentStr);
+            String temp = currentStr.toLowerCase();
+            Integer count = map.get(temp);
             if (count == 1) {
                 nonRepeatingStr = currentStr;
                 break;
