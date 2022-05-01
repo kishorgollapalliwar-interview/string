@@ -12,7 +12,8 @@ import java.util.Objects;
 public class FindFirstNonRepeatingWord {
     public static void main(String[] args) {
         String input = "JAVA is not javaSCRIPT. But syntax of javascript is very close java. Not all programming languages are as good as Java.";
-        String temp = input.replace(".", "");
+
+        String temp = input.replaceAll("[^a-zA-Z\s]+", ""); //remove all special characters (except space)
         String [] inputArray = temp.split(" ");
         boolean isCaseSensitiveCheck = false;
 
